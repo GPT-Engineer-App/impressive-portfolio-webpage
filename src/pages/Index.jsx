@@ -1,10 +1,30 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Button } from "@/components/ui/button";
+import About from "../components/About";
+import Skills from "../components/Skills";
+import Projects from "../components/Projects";
+import Contact from "../components/Contact";
+import Meet from "../components/Meet";
 
 const Index = () => {
   return (
-    <div className="text-center">
-      <h1 className="text-3xl">Your Blank Canvas</h1>
-      <p>Chat with the agent to start making edits.</p>
+    <div className="container mx-auto px-4 py-8">
+      <nav className="mb-8">
+        <ul className="flex justify-center space-x-4">
+          {["About", "Skills", "Projects", "Contact", "Meet"].map((item) => (
+            <li key={item}>
+              <Button variant="ghost" asChild>
+                <a href={`#${item.toLowerCase()}`}>{item}</a>
+              </Button>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <About />
+      <Skills />
+      <Projects />
+      <Contact />
+      <Meet />
     </div>
   );
 };
