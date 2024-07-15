@@ -7,26 +7,38 @@ import Meet from "../components/Meet";
 import Hero from "../components/Hero";
 
 const Index = () => {
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <div className="container mx-auto px-4">
+    <div className="container mx-auto">
       <Hero />
-      <nav className="mb-8 mt-8">
+      <nav className="sticky top-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50 py-4">
         <ul className="flex justify-center space-x-4">
           {["About", "Skills", "Projects", "Contact", "Meet"].map((item) => (
             <li key={item}>
-              <Button variant="ghost" asChild>
-                <a href={`#${item.toLowerCase()}`}>{item}</a>
+              <Button
+                variant="ghost"
+                onClick={() => scrollToSection(item.toLowerCase())}
+              >
+                {item}
               </Button>
             </li>
           ))}
         </ul>
       </nav>
 
-      <About />
-      <Skills />
-      <Projects />
-      <Contact />
-      <Meet />
+      <div className="px-4 space-y-24 py-16">
+        <About />
+        <Skills />
+        <Projects />
+        <Contact />
+        <Meet />
+      </div>
     </div>
   );
 };
